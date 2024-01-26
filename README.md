@@ -1,6 +1,14 @@
 # Intune Device Classification
 
-Classifies, tags or categorize devices so that dynamic Entra ID groups can be created based on device classification.
+<p align="center">
+  <img alt="ai Intune Device Classification logo" src="_res/pictures/IDCGHLogo.png" width="400">
+</p>
+
+---
+
+***<p style="text-align: center;">«Classifies, tags or categorize devices so that dynamic Entra ID groups can be created based on device classification.»</p>***
+
+---
 
 ## Overview
 
@@ -38,6 +46,10 @@ loop Azure Automation Runbook
     Azure Runbook->>Entra ID Endpoint: Stores preRemediationDetectionScriptOutput as ExtensionAttribute
 end
 ```
+
+<p align="center">
+  <img alt="IntuneDeviceClassification Screenshots" src="_res/pictures/IntuneDeviceClassification.png" width="1024">
+</p>
 
 ## Software Requirements
 
