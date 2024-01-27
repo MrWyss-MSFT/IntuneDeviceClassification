@@ -1,5 +1,5 @@
 #Ignore .env
 .env
-Certificate/*
+Certificates/*
 .vscode
 
