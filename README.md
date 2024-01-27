@@ -64,10 +64,16 @@ end
 
 ```powershell
 # Install Pre-Requisites
-winget install --id Microsoft.PowerShell
-winget install --id git.git
-winget install --id Microsoft.DotNet.SDK.8
-winget install --id Microsoft.VisualStudioCode
+# PowerShell 7.4 or higher, Git, .net 8.0 SDK, VSCode
+winget install --id Microsoft.PowerShell --accept-source-agreements --accept-package-agreements
+winget install --id git.git --accept-source-agreements --accept-package-agreements
+winget install --id Microsoft.DotNet.SDK.8 --accept-source-agreements --accept-package-agreements
+winget install --id Microsoft.VisualStudioCode --accept-source-agreements --accept-package-agreements
+
+# If vscode was freshly installed, run this or restart shell
+$env:Path = [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
+
+# Install VSCode Extensions
 code --install-extension ms-dotnettools.dotnet-interactive-vscode
 code --install-extension bierner.markdown-mermaid
 ```
