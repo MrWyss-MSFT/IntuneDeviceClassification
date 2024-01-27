@@ -24,12 +24,14 @@ The **Azure Automation Runbook** queries the GraphAPI for devices that have been
 ```mermaid
 sequenceDiagram
 participant Clients
+box rgba(0, 120, 212, .1) GraphAPI
+end
 participant Intune
-box transparent GraphAPI
+box rgba(0, 120, 212, .1) GraphAPI
 participant Intune Endpoint
 participant Entra ID Endpoint
 end
-box transparent Azure Automation
+box rgba(241, 204, 111, .3) Azure Automation
 participant Azure Runbook
 end
 
