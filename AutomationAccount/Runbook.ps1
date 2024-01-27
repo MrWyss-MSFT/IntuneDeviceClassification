@@ -5,9 +5,9 @@ Connect-MgGraph -ClientID $Connection.ApplicationId -TenantId $Connection.Tenant
 # Get Automation Variables
 $RemediationScriptID = Get-AutomationVariable -Name 'RemediationScriptID'
 $ExtensionAttribute = Get-AutomationVariable -Name 'ExtensionAttribute'
-$ClearValue = Get-AutomationVariable -Name 'ClearValue'
-$DeviceClassificationList = (Get-AutomationVariable -Name 'DeviceClassificationList') -split ","
-
+$ClearValue = (Get-AutomationVariable -Name 'ClearValue').trim()
+$DeviceClassificationList = (Get-AutomationVariable -Name 'DeviceClassificationList') -split ',\s*' | foreach {$_.trim()}
+$DeviceClassificationList += $ClearValue
 
 #region Functions 
 Function Get-MgGraphAllPages {
