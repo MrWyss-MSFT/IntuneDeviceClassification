@@ -17,7 +17,7 @@ This solution has two main components:
 - **Intune Remediation Script**
 - **Azure Automation Runbook**
 
-The **Intune Remediation Script** determines the classification of a device (e.g. CAD Device) and outputs the classification to the GraphAPI. This is fully customizable and can be used to classify devices based on any criteria.
+The **Intune Remediation Script** determines the classification of a device (e.g. CAD Device) and outputs the classification to the GraphAPI as `preRemediationDetectionScriptOutput`. This is fully customizable and can be used to classify devices based on any criteria.
 
 The **Azure Automation Runbook** queries the GraphAPI for devices that have been classified and stores that device classification in a custom attribute (`extensionAttribute1-15`) in Entra ID.
 
@@ -37,13 +37,13 @@ loop Remediation Script
 Intune->>Clients: remediation detection script assignment
 Clients->>Clients: Runs remediation detection script, outputs device classification
 Clients->>Intune: Return script output (e.g. CAD Device)
-Intune->>Intune Endpoint: Stores output (preRemediationDetectionScriptOutput)
+Intune->>Intune Endpoint: Stores output
 end
 loop Azure Automation Runbook
-    Azure Runbook->>Intune Endpoint: Query preRemediationDetectionScriptOutput
-    Intune Endpoint->>Azure Runbook: Return devices with preRemediationDetectionScriptOutput
+    Azure Runbook->>Intune Endpoint: Query output
+    Intune Endpoint->>Azure Runbook: Return devices with output
     Azure Runbook-->Azure Runbook:  processes all devices with output
-    Azure Runbook->>Entra ID Endpoint: Stores preRemediationDetectionScriptOutput as ExtensionAttribute
+    Azure Runbook->>Entra ID Endpoint: Stores output as extensionAttribute
 end
 ```
 
@@ -53,40 +53,44 @@ end
 
 ## Software Requirements
 
-- Microsoft Visual Studio Code (`winget install vscode`)
-- Polyglot Notebooks (`Ctrl+P` -> `ext install ms-dotnettools.dotnet-interactive-vscode`)
-- Markdown Preview Mermaid Support (optional) (`Ctrl+P` -> `ext install bierner.markdown-mermaid`)
-- .net 8.0 (`winget install Microsoft.DotNet.SDK.8`)
+- Windows PowerShell > 7.2 (Other OS support is being looked at)
+- Git
+- Microsoft Visual Studio Code
+- Polyglot Notebooks
+- Markdown Preview Mermaid Support (optional)
+- .net 8.0 SDK
+
+```powershell
+# Install Pre-Requisites
+winget install --id Microsoft.PowerShell
+winget install --id git.git
+winget install --id Microsoft.DotNet.SDK.8
+winget install --id Microsoft.VisualStudioCode
+code --install-extension ms-dotnettools.dotnet-interactive-vscode
+code --install-extension bierner.markdown-mermaid
+```
 
 ## Setup
 
 1. Clone this repo
 2. Open the repo in vscode
-3. Create .env file in the root of the repo
+3. Copy `template.env` to `.env` file in the root of the repo
+4. Update the `.env` file with your values
+5. Open the `IntuneDeviceClassification.ipynb` notebook
+6. Run the notebook (with Polyglot Notebooks extension)
 
-    ```text
-    TenantID="yourtenant.onmicrosoft.com"
-    SubscriptionID="yoursubscriptionid"
-    AppRegistrationName="Intune Device Classification"
-    CertifcateName="Intune Device Classification Certificate"
-    PubCertifcateFileName="IntuneDeviceClassificationCert.cer"
-    PrivCertifcateFileName="IntuneDeviceClassificationCert.pfx"
-    AutomationAccountName="aa-intunedeviceclassification"
-    ResourceGroupName="rg-deviceclassification"
-    Location="eastus"
-    Plan="Basic"
-    ClearValue="clear"
-    DeviceClassificationList="CAD,Kiosk,Special Device,clear"
-    ExtensionAttribute="extensionAttribute13"
-    RemediationScriptName="Device Classification"
-    RemediationScriptPublisher="MrWyss-MSFT"
-    AppConnectionName="AzureAppConnection"
-    RunBookName="rb_intunedeviceclassification"
-    DailyScheduleTime="23:00"
-    ```
+```powershell
+# Navigate to your git repo folder
+cd your\path\to\gitrepos
 
-4. Open the `IntuneDeviceClassification.ipynb` notebook
-5. Run the notebook (with vcode extension)
+# Clone the repo
+git clone https://github.com/MrWyss-MSFT/IntuneDeviceClassification.git
+cd IntuneDeviceClassification
+
+# Open the repo in vscode
+copy template.env .env
+code . .\.env .\IntuneDeviceClassification.ipynb
+```
 
 ## Usage
 
