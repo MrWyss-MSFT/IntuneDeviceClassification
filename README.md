@@ -79,6 +79,7 @@ end
     DeviceClassificationList="CAD,Kiosk,Special Device,clear"
     ExtensionAttribute="extensionAttribute13"
     RemediationScriptName="Device Classification"
+    RemediationScriptPublisher="MrWyss-MSFT"
     AppConnectionName="AzureAppConnection"
     RunBookName="rb_intunedeviceclassification"
     DailyScheduleTime="23:00"
