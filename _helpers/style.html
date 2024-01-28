@@ -1,0 +1,26 @@
+<style>
+</style>
+<script>
+function createLink(span_id, href, text, favicon) {
+  var span = document.getElementById(span_id);
+  var img = document.createElement('img');
+  img.src = favicon;
+  img.style.height = '1em';
+  img.style.marginRight = '5px';
+  span.appendChild(img);
+
+  var a = document.createElement('a');
+  a.href = href;
+  a.textContent = text;
+  a.style.fontSize = '18px'; 
+  a.style.textDecoration = 'none'; 
+  a.addEventListener('mouseover', function() { 
+    this.style.textDecoration = 'underline';
+  });
+  a.addEventListener('mouseout', function() { 
+    this.style.textDecoration = 'none';
+  });
+  span.appendChild(a);
+  return span;
+}
+</script>
