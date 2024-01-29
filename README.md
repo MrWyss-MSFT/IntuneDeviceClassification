@@ -104,7 +104,7 @@ code . .\.env .\IntuneDeviceClassification.ipynb
 
 >**NOTE:** The complete setup may take up to 20 minutes in real-time.
 
-<video src="_res/videos/IDC_fast_yt720.mp4" controls title="Title"></video>
+<video src="https://github.com/MrWyss-MSFT/IntuneDeviceClassification/assets/53998264/2d64534d-3cfe-4c5b-9a87-8020813231eb" controls title="Cut and Fast Demo Video"></video>
 
 ## Usage
 
