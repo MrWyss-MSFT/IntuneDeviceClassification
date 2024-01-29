@@ -100,6 +100,12 @@ copy template.env .env
 code . .\.env .\IntuneDeviceClassification.ipynb
 ```
 
+## Demo (Cut and sped up video)
+
+>**NOTE:** The complete setup may take up to 20 minutes in real-time.
+
+<video src="_res/videos/IDC_fast_yt720.mp4" controls title="Title"></video>
+
 ## Usage
 
 ### Intune Remediation Script
