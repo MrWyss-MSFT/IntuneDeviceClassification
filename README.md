@@ -135,3 +135,7 @@ The Azure Automation Runbook is scheduled to run daily. It queries the GraphAPI 
 ## Costs
 
 As of now, I don't have a good estimate of the costs. I will update this section once I have a better idea. The Azure Automation Runbook is scheduled to run daily and the runtime depends on how many devices need to be classified. See Azure Automation pricing for more details here: <https://azure.microsoft.com/en-us/pricing/details/automation/>
+
+## Contributing
+
+Pull requests are welcome. For changes and issues, please open an issue first to discuss what you would like to change.
